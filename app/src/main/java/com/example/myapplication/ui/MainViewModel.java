@@ -2,8 +2,6 @@ package com.example.myapplication.ui;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.paging.PagedList;
-
 import com.example.myapplication.data.model.job.JobResponseItem;
 import com.example.myapplication.data.repository.JobRepository;
 import com.example.myapplication.utils.Result;
@@ -15,8 +13,8 @@ public class MainViewModel extends ViewModel {
     public MainViewModel(JobRepository jobRepository) {
         this.jobRepository = jobRepository;
     }
-    public LiveData<PagedList<JobResponseItem>> getPagedJob() {
-        return jobRepository.getPagedJob();
+    public LiveData<Result<List<JobResponseItem>>> getJob() {
+        return jobRepository.getJob();
     }
 
     public LiveData<Result<List<JobResponseItem>>> searchJobByDescription(String description) {
