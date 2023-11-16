@@ -10,11 +10,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
-import com.example.myapplication.data.model.User;
 import com.example.myapplication.databinding.ActivityLoginBinding;
 import com.example.myapplication.ui.MainActivity;
-
-import java.util.List;
 
 
 public class LoginActivity extends AppCompatActivity {

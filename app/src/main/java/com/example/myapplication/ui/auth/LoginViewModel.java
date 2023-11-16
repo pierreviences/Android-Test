@@ -1,12 +1,9 @@
 package com.example.myapplication.ui.auth;
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.myapplication.data.model.User;
+import com.example.myapplication.data.model.auth.User;
 import com.example.myapplication.utils.UserUtils;
-
-import java.util.List;
 
 public class LoginViewModel extends ViewModel {
     private User[] users = UserUtils.getUsers();

@@ -1,6 +1,6 @@
 package com.example.myapplication.utils;
 
-import com.example.myapplication.data.model.User;
+import com.example.myapplication.data.model.auth.User;
 
 public class UserUtils {
 
