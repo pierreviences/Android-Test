@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
@@ -15,7 +16,7 @@ import java.util.Objects;
 import androidx.recyclerview.widget.ListAdapter;
 
 
-public class JobAdapter extends ListAdapter<JobResponseItem, JobAdapter.MyViewHolder> {
+public class JobAdapter extends PagedListAdapter<JobResponseItem, JobAdapter.MyViewHolder> {
     public JobAdapter() {
         super(DIFF_CALLBACK);
     }

@@ -11,7 +11,7 @@ import retrofit2.http.Query;
 
 public interface ApiService {
     @GET("positions.json")
-    Call<List<JobResponseItem>> getJob();
+    Call<List<JobResponseItem>> getJob(@Query("page") int page);
     @GET("positions.json")
     Call<List<JobResponseItem>> getJobByDescription(@Query("description") String description);
     @GET("positions.json")

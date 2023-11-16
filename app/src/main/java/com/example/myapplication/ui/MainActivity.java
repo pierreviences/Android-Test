@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -34,14 +36,9 @@ public class MainActivity extends AppCompatActivity {
         ViewModelFactory factory = ViewModelFactory.getInstance(this);
         mainViewModel = new ViewModelProvider(this, factory).get(MainViewModel.class);
         jobAdapter = new JobAdapter();
-        mainViewModel.getJob().observe(this, result -> {
-            binding.progressBar.setVisibility(result instanceof Result.Loading ? View.VISIBLE : View.GONE);
-            if (result instanceof Result.Success) {
-                List<JobResponseItem> jobData = ((Result.Success<List<JobResponseItem>>) result).getData();
-                jobAdapter.submitList(jobData);
-            } else if (result instanceof Result.Error) {
-                Toast.makeText(this, ((Result.Error<List<JobResponseItem>>) result).getError(), Toast.LENGTH_SHORT).show();
-            }
+        mainViewModel.getPagedJob().observe(this, pagedList -> {
+            Log.d("MainActivity", "PagedList size: " + pagedList.size());
+            jobAdapter.submitList(pagedList);
         });
 
         binding.rvJob.setLayoutManager(new LinearLayoutManager(this));
@@ -65,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                         binding.progressBar.setVisibility(result instanceof Result.Loading ? View.VISIBLE : View.GONE);
                         if (result instanceof Result.Success) {
                             List<JobResponseItem> jobData = ((Result.Success<List<JobResponseItem>>) result).getData();
-                            jobAdapter.submitList(jobData);
+                            jobAdapter.submitList((PagedList<JobResponseItem>) jobData);
                             updateNoDataVisibility(jobData.isEmpty());
                         } else if (result instanceof Result.Error) {
                             Toast.makeText(this, ((Result.Error<List<JobResponseItem>>) result).getError(), Toast.LENGTH_SHORT).show();
@@ -103,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             binding.progressBar.setVisibility(result instanceof Result.Loading ? View.VISIBLE : View.GONE);
             if (result instanceof Result.Success) {
                 List<JobResponseItem> jobData = ((Result.Success<List<JobResponseItem>>) result).getData();
-                jobAdapter.submitList(jobData);
+                jobAdapter.submitList((PagedList<JobResponseItem>) jobData);
                 updateNoDataVisibility(jobData.isEmpty());
             } else if (result instanceof Result.Error) {
                 Toast.makeText(this, ((Result.Error<List<JobResponseItem>>) result).getError(), Toast.LENGTH_SHORT).show();
