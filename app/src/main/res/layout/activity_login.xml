@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".LoginActivity"
+    tools:context=".ui.auth.LoginActivity"
     >
 
     <TextView
@@ -82,7 +82,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:textColor="#ffffff"
-        android:text="Login" />
+        android:text="@string/login" />
 
     <LinearLayout
         android:layout_marginTop="20dp"
@@ -98,7 +98,7 @@
 
         <TextView
             android:id="@+id/tv_signup"
-            android:textColor="#407BFF"
+            android:textColor="@color/my_light_primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"

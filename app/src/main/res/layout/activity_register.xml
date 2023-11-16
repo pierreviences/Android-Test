@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".RegisterActivity"
+    tools:context=".ui.auth.RegisterActivity"
     >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/title_login"
+        android:text="@string/title_register"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="#000000"
@@ -21,13 +21,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/desc_login"
+        android:text="@string/desc_register"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="20dp"
         />
 
     <EditText
-        android:id="@+id/et_login_username"
+        android:id="@+id/et_register_username"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:hint="@string/username"
@@ -49,7 +49,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/bg_edit_form">
         <EditText
-            android:id="@+id/et_login_password"
+            android:id="@+id/et_register_password"
             android:background="#00000000"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -82,7 +82,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:textColor="#ffffff"
-        android:text="Login" />
+        android:text="@string/register" />
 
     <LinearLayout
         android:layout_marginTop="20dp"
@@ -93,7 +93,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dont_have_account"
+            android:text="@string/have_account"
             />
 
         <TextView
@@ -102,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="@string/signup"
+            android:text="@string/signin"
             />
 
     </LinearLayout>
