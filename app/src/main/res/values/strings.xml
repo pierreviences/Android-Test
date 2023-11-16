@@ -8,6 +8,6 @@
     <string name="login_success">Login Successful</string>
     <string name="login_failure">Login Failed. Check username and password again.</string>
     <string name="fill_both_fields">Please fill in your username and password</string>
-
+    <string name="network_error_message">Network Error</string>
 
 </resources>
