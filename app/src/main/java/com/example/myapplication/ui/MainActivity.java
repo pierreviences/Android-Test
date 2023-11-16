@@ -2,12 +2,17 @@ package com.example.myapplication.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.myapplication.R;
 import com.example.myapplication.data.model.job.JobResponseItem;
 import com.example.myapplication.databinding.ActivityMainBinding;
 import com.example.myapplication.ui.adapter.JobAdapter;
@@ -45,6 +50,18 @@ public class MainActivity extends AppCompatActivity {
         jobAdapter.setOnItemClickListener(jobItem -> startActivity(new Intent(this, DetailActivity.class).putExtra("jobItem", jobItem)));
 
         setupSearchView();
+
+        binding.imgButton.setOnClickListener(v -> {
+            if(binding.layoutExpand.getVisibility() == v.VISIBLE){
+                TransitionManager.beginDelayedTransition(binding.cardView, new AutoTransition());
+                binding.layoutExpand.setVisibility(v.GONE);
+                binding.imgButton.setImageResource(R.drawable.baseline_keyboard_arrow_down_24);
+            }else{
+                TransitionManager.beginDelayedTransition(binding.cardView, new AutoTransition());
+                binding.layoutExpand.setVisibility(v.VISIBLE);
+                binding.imgButton.setImageResource(R.drawable.baseline_keyboard_arrow_up_24);
+            }
+        });
     }
     private void setupSearchView() {
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -67,9 +84,14 @@ public class MainActivity extends AppCompatActivity {
             if (result instanceof Result.Success) {
                 List<JobResponseItem> jobData = ((Result.Success<List<JobResponseItem>>) result).getData();
                 jobAdapter.submitList(jobData);
+                updateNoDataVisibility(jobData.isEmpty());
             } else if (result instanceof Result.Error) {
                 Toast.makeText(this, ((Result.Error<List<JobResponseItem>>) result).getError(), Toast.LENGTH_SHORT).show();
+                updateNoDataVisibility(true);
             }
         });
+    }
+    private void updateNoDataVisibility(boolean showNoData) {
+        binding.noDataTextView.setVisibility(showNoData ? View.VISIBLE : View.GONE);
     }
 }
