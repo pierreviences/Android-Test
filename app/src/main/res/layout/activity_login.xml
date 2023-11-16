@@ -84,26 +84,11 @@
         android:textColor="#ffffff"
         android:text="@string/login" />
 
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dont_have_account"
-            />
-
-        <TextView
-            android:id="@+id/tv_signup"
-            android:textColor="@color/my_light_primary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="@string/signup"
-            />
-
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible" />
 </LinearLayout>
