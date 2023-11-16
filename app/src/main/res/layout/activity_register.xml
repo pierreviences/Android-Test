@@ -75,7 +75,7 @@
 
     <Button
         android:background="@drawable/bg_button"
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginEnd="20dp"
@@ -98,12 +98,21 @@
 
         <TextView
             android:id="@+id/tv_signup"
-            android:textColor="#407BFF"
+            android:textColor="@color/my_light_primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="@string/signin"
             />
 
+
+
     </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible" />
 </LinearLayout>
