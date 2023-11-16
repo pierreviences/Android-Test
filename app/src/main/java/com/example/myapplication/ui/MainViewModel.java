@@ -16,4 +16,7 @@ public class MainViewModel extends ViewModel {
     public LiveData<Result<List<JobResponseItem>>> getJob() {
         return jobRepository.getJob();
     }
+    public LiveData<Result<List<JobResponseItem>>> searchJobByDescription(String description) {
+        return jobRepository.searchJobByDescription(description);
+    }
 }
