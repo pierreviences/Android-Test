@@ -22,6 +22,11 @@ public class JobAdapter extends ListAdapter<JobResponseItem, JobAdapter.MyViewHo
     public JobAdapter() {
         super(DIFF_CALLBACK);
     }
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
 
 
     @NonNull
@@ -37,6 +42,11 @@ public class JobAdapter extends ListAdapter<JobResponseItem, JobAdapter.MyViewHo
         JobResponseItem jobItem = getItem(position);
         if (jobItem != null) {
             holder.bind(jobItem);
+            holder.itemView.setOnClickListener(v -> {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(jobItem);
+                }
+            });
         }
     }
 
@@ -75,4 +85,8 @@ public class JobAdapter extends ListAdapter<JobResponseItem, JobAdapter.MyViewHo
                     return Objects.equals(oldItem, newItem);
                 }
             };
+
+    public interface OnItemClickListener {
+        void onItemClick(JobResponseItem jobItem);
+    }
 }

@@ -1,8 +1,9 @@
 package com.example.myapplication.data.model.job;
 
 import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 
-public class JobResponseItem {
+public class JobResponseItem implements Serializable{
 
 	@SerializedName("company_logo")
 	private String companyLogo;

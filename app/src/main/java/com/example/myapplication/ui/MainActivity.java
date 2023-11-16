@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -50,5 +51,10 @@ public class MainActivity extends AppCompatActivity {
         binding.rvJob.setLayoutManager(new LinearLayoutManager(this));
         binding.rvJob.setHasFixedSize(true);
         binding.rvJob.setAdapter(jobAdapter);
+        jobAdapter.setOnItemClickListener(jobItem -> {
+            Intent intent = new Intent(this, DetailActivity.class);
+            intent.putExtra("jobItem", jobItem);
+            startActivity(intent);
+        });
     }
 }
