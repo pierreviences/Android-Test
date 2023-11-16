@@ -14,4 +14,10 @@ public interface ApiService {
     Call<List<JobResponseItem>> getJob();
     @GET("positions.json")
     Call<List<JobResponseItem>> getJobByDescription(@Query("description") String description);
+    @GET("positions.json")
+    Call<List<JobResponseItem>> getJobSearchApply(
+            @Query("description") String description,
+            @Query("full_time") boolean fulltime,
+            @Query("location") String location
+    );
 }

@@ -56,12 +56,32 @@ public class MainActivity extends AppCompatActivity {
                 TransitionManager.beginDelayedTransition(binding.cardView, new AutoTransition());
                 binding.layoutExpand.setVisibility(v.GONE);
                 binding.imgButton.setImageResource(R.drawable.baseline_keyboard_arrow_down_24);
+                binding.etLocation.setText("");
+                binding.btnApply.setOnClickListener(e -> {
+                    String description = binding.searchView.getQuery().toString();
+                    boolean isFullTime = binding.switchFulltime.isChecked();
+                    String location = binding.etLocation.getText().toString().trim();
+                    mainViewModel.searchJobByApply(description, isFullTime, location).observe(this, result -> {
+                        binding.progressBar.setVisibility(result instanceof Result.Loading ? View.VISIBLE : View.GONE);
+                        if (result instanceof Result.Success) {
+                            List<JobResponseItem> jobData = ((Result.Success<List<JobResponseItem>>) result).getData();
+                            jobAdapter.submitList(jobData);
+                            updateNoDataVisibility(jobData.isEmpty());
+                        } else if (result instanceof Result.Error) {
+                            Toast.makeText(this, ((Result.Error<List<JobResponseItem>>) result).getError(), Toast.LENGTH_SHORT).show();
+                            updateNoDataVisibility(true);
+                        }
+                    });
+                });
+
             }else{
                 TransitionManager.beginDelayedTransition(binding.cardView, new AutoTransition());
                 binding.layoutExpand.setVisibility(v.VISIBLE);
                 binding.imgButton.setImageResource(R.drawable.baseline_keyboard_arrow_up_24);
             }
         });
+
+
     }
     private void setupSearchView() {
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
