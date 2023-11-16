@@ -1,10 +1,7 @@
 package com.example.myapplication.ui;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.example.myapplication.data.model.job.JobResponse;
 import com.example.myapplication.data.model.job.JobResponseItem;
 import com.example.myapplication.data.repository.JobRepository;
 import com.example.myapplication.utils.Result;
@@ -19,5 +16,4 @@ public class MainViewModel extends ViewModel {
     public LiveData<Result<List<JobResponseItem>>> getJob() {
         return jobRepository.getJob();
     }
-
 }

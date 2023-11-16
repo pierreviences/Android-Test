@@ -1,6 +1,5 @@
 package com.example.myapplication.data.remote;
 
-import com.example.myapplication.data.model.job.JobResponse;
 import com.example.myapplication.data.model.job.JobResponseItem;
 
 import java.util.List;

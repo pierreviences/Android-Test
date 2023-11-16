@@ -2,13 +2,11 @@ package com.example.myapplication.ui.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.ActivityLoginBinding;
 import com.example.myapplication.ui.MainActivity;
@@ -35,9 +33,7 @@ public class LoginActivity extends AppCompatActivity {
             binding.icEyePassword.setImageResource(passwordShowing ? R.drawable.ic_eye_hide : R.drawable.ic_eye_show);
             binding.etLoginPassword.setSelection(binding.etLoginPassword.length());
         });
-
-        viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-
+       viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
        binding.btnLogin.setOnClickListener(v -> {
             String username = binding.etLoginUsername.getText().toString();
             String password = binding.etLoginPassword.getText().toString();
@@ -54,11 +50,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
     private boolean isInputValid(String username, String password) {
         return !username.isEmpty() && !password.isEmpty();
     }
-
     private void showToast(int messageResId) {
         Toast.makeText(LoginActivity.this, messageResId, Toast.LENGTH_SHORT).show();
     }

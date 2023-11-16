@@ -1,28 +1,20 @@
 package com.example.myapplication.data.repository;
 
 import android.content.Context;
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MediatorLiveData;
-
-
 import com.example.myapplication.R;
 import com.example.myapplication.data.model.job.JobResponseItem;
 import com.example.myapplication.data.remote.ApiService;
 import com.example.myapplication.utils.Result;
-
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class JobRepository {
-
     private final ApiService apiService;
     private final Context context;
-
     private final MediatorLiveData<Result<List<JobResponseItem>>> result = new MediatorLiveData<>();
     private JobRepository(ApiService apiService,  Context context) {
         this.apiService = apiService;
@@ -30,7 +22,6 @@ public class JobRepository {
     }
     public MediatorLiveData<Result<List<JobResponseItem>>> getJob() {
         result.setValue(new Result.Loading<>());
-
         Call<List<JobResponseItem>> client = apiService.getJob();
         client.enqueue(new Callback<List<JobResponseItem>>() {
             @Override
@@ -53,10 +44,7 @@ public class JobRepository {
         });
         return result;
     }
-
-
     private static volatile JobRepository instance;
-
     public static JobRepository getInstance(ApiService apiService, Context context) {
         if (instance == null) {
             synchronized (JobRepository.class) {
